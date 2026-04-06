@@ -1,580 +1,740 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Tổng Hợp Đề Tiếng Anh – Ôn Thi Cấp 3</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HOAN — Bách Khoa 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#0d0f14;--surface:#13161d;--card:#1a1e28;--card-hover:#1f2434;
-  --border:rgba(255,255,255,0.07);--border-hover:rgba(255,255,255,0.16);
-  --accent:#4f8ef7;--accent2:#7b61ff;--text-primary:#f0f2f8;
-  --text-secondary:#8b93a8;--text-muted:#4a5068;
-  --success:#34d399;--danger:#f87171;--gold:#f5c842;
-  --radius:14px;--radius-sm:8px;
+:root {
+  --bg:      #080808;
+  --surface: #101010;
+  --line:    #1c1c1c;
+  --line2:   #282828;
+  --muted:   #3a3a3a;
+  --sub:     #6b6b6b;
+  --body:    #b0b0b0;
+  --head:    #f2f2f2;
+  --red:     #e8402a;
+  --amber:   #d4972a;
+  --cyan:    #2a8fa8;
+  --sage:    #3a8a5a;
+  --mono: 'IBM Plex Mono', monospace;
+  --sans: 'IBM Plex Sans', sans-serif;
 }
-body{background:var(--bg);color:var(--text-primary);font-family:'DM Sans',sans-serif;min-height:100vh;overflow-x:hidden}
-body::before{content:'';position:fixed;inset:0;background:
-  radial-gradient(ellipse 80% 50% at 20% 10%,rgba(79,142,247,0.08) 0%,transparent 60%),
-  radial-gradient(ellipse 60% 40% at 80% 80%,rgba(123,97,255,0.07) 0%,transparent 55%);
-  pointer-events:none;z-index:0}
-.wrapper{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:0 20px 80px}
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+html { font-size:14px; -webkit-font-smoothing:antialiased; }
+body { font-family:var(--sans); background:var(--bg); color:var(--body); min-height:100vh; line-height:1.5; }
+button { font-family:inherit; cursor:pointer; }
 
-/* TOAST */
-.toast{
-  position:fixed;top:20px;right:20px;z-index:9999;
-  background:#1a1e28;border:1px solid rgba(79,142,247,0.4);
-  border-radius:var(--radius);padding:16px 36px 16px 18px;
-  max-width:300px;min-width:240px;
-  box-shadow:0 8px 32px rgba(0,0,0,0.6);
-  transform:translateX(360px);opacity:0;
-  transition:transform 0.4s cubic-bezier(.16,1,.3,1),opacity 0.4s;
+/* TOPBAR */
+.topbar {
+  height:40px; border-bottom:1px solid var(--line);
+  display:flex; align-items:center; padding:0 32px; gap:24px;
+  position:sticky; top:0; background:var(--bg); z-index:100;
 }
-.toast.show{transform:translateX(0);opacity:1}
-.toast-close{position:absolute;top:10px;right:12px;font-size:18px;color:var(--text-muted);cursor:pointer;background:none;border:none;line-height:1}
-.toast-title{font-size:13px;font-weight:500;color:var(--accent);margin-bottom:5px}
-.toast-body{font-size:12px;color:var(--text-secondary);line-height:1.5}
+.topbar-logo { font-family:var(--mono); font-size:12px; font-weight:700; color:var(--head); letter-spacing:1px; }
+.topbar-sep  { color:var(--line2); }
+.topbar-path { font-family:var(--mono); font-size:11px; color:var(--sub); }
+.topbar-right{ margin-left:auto; display:flex; align-items:center; gap:16px; }
+.topbar-cd   { font-family:var(--mono); font-size:11px; color:var(--sub); }
+.topbar-cd span { color:var(--red); font-weight:700; }
+.live { width:6px; height:6px; border-radius:50%; background:var(--red); animation:blink 2s ease-in-out infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
 
-/* HEADER */
-.header{padding:52px 0 36px;text-align:center;animation:fadeDown 0.7s ease both}
-.header-eyebrow{
-  display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:500;
-  letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);
-  background:rgba(79,142,247,0.1);border:1px solid rgba(79,142,247,0.25);
-  border-radius:100px;padding:6px 16px;margin-bottom:18px;
+/* HERO */
+.hero {
+  padding:48px 32px 40px; border-bottom:1px solid var(--line);
+  display:grid; grid-template-columns:1fr auto; align-items:end; gap:32px;
 }
-.header-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
-.header h1{
-  font-family:'Playfair Display',serif;font-size:clamp(30px,6vw,50px);font-weight:900;
-  line-height:1.1;letter-spacing:-0.02em;
-  background:linear-gradient(135deg,#f0f2f8 30%,#8b93a8);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  margin-bottom:10px;
+.hero-tag  { font-family:var(--mono); font-size:10px; font-weight:500; letter-spacing:3px; text-transform:uppercase; color:var(--sub); margin-bottom:16px; }
+.hero-name { font-family:var(--mono); font-size:clamp(48px,7vw,80px); font-weight:700; color:var(--head); letter-spacing:-2px; line-height:1; }
+.hero-name em { font-style:normal; color:var(--red); }
+.hero-desc { margin-top:12px; font-size:13px; color:var(--sub); font-weight:500; }
+.hero-desc strong { color:var(--amber); font-weight:600; }
+.hero-stats { display:flex; flex-direction:column; align-items:flex-end; gap:16px; }
+.stat-item { text-align:right; }
+.stat-val  { font-family:var(--mono); font-size:28px; font-weight:700; color:var(--head); line-height:1; }
+.stat-lbl  { font-size:10px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--sub); margin-top:2px; }
+
+/* METRICS */
+.metrics { display:grid; grid-template-columns:repeat(4,1fr); border-bottom:1px solid var(--line); }
+.metric { padding:20px 32px; border-right:1px solid var(--line); }
+.metric:last-child { border-right:none; }
+.metric-label { font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--sub); margin-bottom:12px; }
+.metric-bar { height:1px; background:var(--line2); margin-bottom:12px; position:relative; }
+.metric-fill { position:absolute; top:0; left:0; height:100%; transition:width 1.2s cubic-bezier(.16,1,.3,1); width:0; }
+.fill-red   { background:var(--red); }
+.fill-amber { background:var(--amber); }
+.fill-cyan  { background:var(--cyan); }
+.fill-sage  { background:var(--sage); }
+.metric-val { font-family:var(--mono); font-size:12px; font-weight:500; color:var(--body); }
+
+/* LAYOUT */
+.layout { display:grid; grid-template-columns:1fr 300px; }
+
+/* MAIN */
+.main { border-right:1px solid var(--line); padding:32px; }
+.panel-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:24px; }
+.panel-title  { font-family:var(--mono); font-size:10px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--sub); }
+
+/* DAY TABS */
+.day-tabs { display:flex; border:1px solid var(--line2); border-radius:3px; overflow:hidden; }
+.day-tab  {
+  padding:6px 14px; font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.5px;
+  border:none; border-right:1px solid var(--line2); background:transparent; color:var(--sub);
+  transition:background .12s, color .12s;
 }
-.header-sub{font-size:14px;color:var(--text-secondary);font-weight:300;letter-spacing:0.03em}
-.header-meta{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:20px;flex-wrap:wrap}
-.meta-chip{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-secondary);background:var(--surface);border:1px solid var(--border);border-radius:100px;padding:5px 14px}
+.day-tab:last-child { border-right:none; }
+.day-tab:hover { background:var(--surface); color:var(--body); }
+.day-tab.active { background:var(--head); color:var(--bg); }
+.day-tab.wknd.active { background:var(--sage); color:#fff; }
 
-/* STREAK BAR */
-.streak-bar{
-  background:linear-gradient(135deg,rgba(245,200,66,0.1),rgba(245,200,66,0.04));
-  border:1px solid rgba(245,200,66,0.22);border-radius:var(--radius);
-  padding:16px 20px;margin-bottom:12px;
-  display:flex;align-items:center;gap:14px;
-  animation:fadeUp 0.5s ease 0.05s both;
+/* PANELS */
+.sch-panel { display:none; }
+.sch-panel.active { display:block; animation:up .2s ease; }
+@keyframes up { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none} }
+
+/* TABLE */
+.block-table { width:100%; border-collapse:collapse; border:1px solid var(--line); margin-top:24px; }
+.block-table tr { border-bottom:1px solid var(--line); transition:background .12s; }
+.block-table tr:last-child { border-bottom:none; }
+.block-table tr:hover { background:rgba(255,255,255,.018); }
+.block-table tr.done { opacity:.35; }
+.block-table tr.done .block-title::after { content:' ✓'; color:var(--sage); font-size:11px; }
+.block-table td { padding:12px 16px; vertical-align:top; }
+
+.col-time { font-family:var(--mono); font-size:11px; color:var(--sub); white-space:nowrap; width:90px; padding-top:14px; }
+.col-type { width:56px; padding-top:13px; }
+.type-pill {
+  display:inline-block; font-family:var(--mono); font-size:9px; font-weight:700;
+  letter-spacing:1px; text-transform:uppercase; padding:2px 6px; border-radius:2px;
 }
-.streak-flame{font-size:26px;animation:bounce 1.8s infinite;flex-shrink:0}
-.streak-info{flex:1;min-width:0}
-.streak-title{font-size:13px;font-weight:500;color:var(--gold)}
-.streak-sub{font-size:11px;color:var(--text-muted);margin-top:2px}
-.streak-num{font-family:'Playfair Display',serif;font-size:34px;font-weight:900;color:var(--gold);line-height:1;flex-shrink:0}
-.streak-dots{display:flex;gap:5px;margin-top:8px}
-.streak-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);transition:all 0.3s;flex-shrink:0}
-.streak-dot.done{background:var(--gold);border-color:var(--gold);box-shadow:0 0 6px rgba(245,200,66,0.45)}
-.streak-dot.today{border:2px solid var(--gold);animation:pulse 1.5s infinite}
+.tp-eng  { background:rgba(212,151,42,.12); color:var(--amber); }
+.tp-math { background:rgba(42,143,168,.12);  color:var(--cyan);  }
+.tp-sch  { background:rgba(255,255,255,.04); color:var(--muted); }
+.tp-rest { background:transparent;           color:var(--muted); }
+.tp-test { background:rgba(232,64,42,.1);    color:var(--red);   }
+.tp-free { background:rgba(58,138,90,.1);    color:var(--sage);  }
 
-/* MOTIVATION */
-.motivation-box{
-  background:linear-gradient(135deg,rgba(79,142,247,0.09),rgba(123,97,255,0.07));
-  border:1px solid rgba(79,142,247,0.18);border-radius:var(--radius);
-  padding:16px 20px;margin-bottom:16px;display:flex;align-items:center;gap:12px;
-  animation:fadeUp 0.5s ease 0.1s both;
+.col-content {}
+.block-title { font-size:13px; font-weight:600; color:var(--head); margin-bottom:2px; }
+.block-row.eng  .block-title { color:var(--amber); }
+.block-row.math .block-title { color:var(--cyan);  }
+.block-row.test .block-title { color:var(--red);   }
+.block-row.free .block-title { color:var(--sage);  }
+.block-row.sch  .block-title { color:var(--sub);   }
+.block-row.rest .block-title { color:var(--sub);   }
+.block-desc { font-size:12px; color:var(--sub); line-height:1.6; }
+.block-desc b { color:var(--body); font-weight:600; }
+.block-steps { margin-top:8px; display:none; }
+.block-table tr:hover .block-steps { display:block; }
+.block-step {
+  font-size:11px; color:var(--muted); padding:2px 0 2px 12px;
+  border-left:1px solid var(--line2); margin-top:2px;
 }
-.motiv-icon{font-size:22px;flex-shrink:0;animation:bounce 2.2s infinite}
-.motiv-content{flex:1}
-.motiv-text{font-size:14px;font-weight:500;color:var(--text-primary);line-height:1.4;transition:opacity 0.35s}
-.motiv-sub{font-size:11px;color:var(--text-secondary);margin-top:3px;transition:opacity 0.35s}
-
-/* STATS */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:22px;animation:fadeUp 0.5s ease 0.15s both}
-.stat-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;text-align:center}
-.stat-num{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;line-height:1;margin-bottom:4px}
-.stat-label{font-size:10px;color:var(--text-muted);letter-spacing:0.04em}
-.stat-done .stat-num{color:var(--success)}
-.stat-streak .stat-num{color:var(--gold)}
-.stat-days .stat-num{color:var(--danger)}
-
-/* SECTION */
-.section-head{display:flex;align-items:center;gap:12px;margin-bottom:12px;animation:fadeUp 0.5s ease 0.2s both}
-.section-head h2{font-size:10px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);white-space:nowrap}
-.section-line{flex:1;height:1px;background:var(--border)}
-
-/* CARDS */
-.exam-list{display:flex;flex-direction:column;gap:8px}
-.exam-card{
-  display:flex;align-items:center;gap:14px;
-  background:var(--card);border:1px solid var(--border);
-  border-radius:var(--radius);padding:15px 18px;
-  transition:background 0.2s,border-color 0.2s,transform 0.15s;
-  animation:fadeUp 0.4s ease both;position:relative;overflow:hidden;
+.col-action { width:32px; text-align:center; vertical-align:middle; }
+.check-btn {
+  width:16px; height:16px; border:1px solid var(--line2); border-radius:2px;
+  background:transparent; transition:background .12s, border-color .12s;
 }
-.exam-card::before{
-  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
-  background:linear-gradient(180deg,var(--accent),var(--accent2));
-  border-radius:2px 0 0 2px;opacity:0;transition:opacity 0.2s;
-}
-.exam-card:hover{background:var(--card-hover);border-color:var(--border-hover);transform:translateX(3px)}
-.exam-card:hover::before{opacity:1}
-.exam-card.is-done{border-color:rgba(52,211,153,0.2);background:rgba(52,211,153,0.04)}
-.exam-card.is-done::before{background:var(--success);opacity:1}
-.exam-num{
-  width:38px;height:38px;border-radius:var(--radius-sm);
-  background:rgba(79,142,247,0.12);border:1px solid rgba(79,142,247,0.2);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Playfair Display',serif;font-size:15px;font-weight:700;
-  color:var(--accent);flex-shrink:0;transition:all 0.3s;
-}
-.exam-card.is-done .exam-num{background:rgba(52,211,153,0.14);border-color:rgba(52,211,153,0.28);color:var(--success)}
-.exam-info{flex:1;min-width:0}
-.exam-title{font-size:13px;font-weight:500;color:var(--text-primary);margin-bottom:3px;display:flex;align-items:center;gap:5px;flex-wrap:wrap}
-.exam-date{font-size:11px;color:var(--text-muted);display:flex;align-items:center;gap:4px}
-.exam-action{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.check-btn:hover { border-color:var(--sage); }
+.block-table tr.done .check-btn { background:var(--sage); border-color:var(--sage); }
 
-/* BADGES */
-.badge{font-size:9px;font-weight:500;letter-spacing:0.07em;padding:2px 8px;border-radius:100px;text-transform:uppercase;flex-shrink:0}
-.badge-new{background:rgba(79,142,247,0.15);color:var(--accent);border:1px solid rgba(79,142,247,0.3)}
-.badge-done{background:rgba(52,211,153,0.13);color:var(--success);border:1px solid rgba(52,211,153,0.28)}
-
-/* BUTTONS */
-.btn{
-  display:inline-flex;align-items:center;gap:5px;
-  font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;
-  border-radius:100px;padding:7px 14px;cursor:pointer;
-  transition:opacity 0.2s,transform 0.15s,box-shadow 0.2s;
-  border:none;white-space:nowrap;flex-shrink:0;
+/* ASIDE */
+.aside { padding:32px 28px; display:flex; flex-direction:column; gap:32px; }
+.aside-block {}
+.aside-title {
+  font-family:var(--mono); font-size:10px; font-weight:700; letter-spacing:3px;
+  text-transform:uppercase; color:var(--sub); margin-bottom:16px;
+  padding-bottom:12px; border-bottom:1px solid var(--line);
 }
-.btn svg{width:12px;height:12px}
-.btn-download{color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 3px 12px rgba(79,142,247,0.28)}
-.btn-download:hover{opacity:0.9;transform:scale(1.04)}
-.btn-done{color:var(--success);background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.28);cursor:default}
-.btn-status{color:var(--text-secondary);background:rgba(255,255,255,0.05);border:1px solid var(--border)}
-.btn-status:hover{background:rgba(255,255,255,0.09);border-color:var(--border-hover)}
-.btn-continue{color:#fff;background:linear-gradient(135deg,#f59e0b,#ef4444);box-shadow:0 3px 12px rgba(245,158,11,0.3)}
-.btn-continue:hover{opacity:0.9;transform:scale(1.04)}
-
-/* MODAL */
-.modal-overlay{
-  position:fixed;inset:0;z-index:1000;
-  background:rgba(0,0,0,0.75);backdrop-filter:blur(5px);
-  display:flex;align-items:center;justify-content:center;padding:20px;
-  opacity:0;pointer-events:none;transition:opacity 0.25s;
+.commit {
+  padding:20px 24px; border:1px solid var(--line2); border-left:2px solid var(--red);
+  background:var(--surface);
 }
-.modal-overlay.open{opacity:1;pointer-events:all}
-.modal{
-  background:#1a1e28;border:1px solid rgba(255,255,255,0.1);
-  border-radius:20px;padding:26px;max-width:380px;width:100%;
-  transform:scale(0.9) translateY(24px);transition:transform 0.3s cubic-bezier(.16,1,.3,1);
+.commit-text { font-size:14px; font-weight:700; color:var(--head); line-height:1.75; }
+.commit-text em { font-style:normal; color:var(--amber); }
+
+/* PHASES */
+.phase-row {
+  display:grid; grid-template-columns:auto 1fr auto; align-items:center;
+  gap:12px; padding:12px 0; border-bottom:1px solid var(--line);
 }
-.modal-overlay.open .modal{transform:scale(1) translateY(0)}
-.modal-header{text-align:center;margin-bottom:22px}
-.modal-icon{font-size:34px;margin-bottom:8px}
-.modal-title{font-size:16px;font-weight:500;color:var(--text-primary);margin-bottom:5px}
-.modal-sub{font-size:12px;color:var(--text-secondary);line-height:1.5}
-.modal-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.modal-btn{
-  display:flex;flex-direction:column;align-items:center;gap:6px;
-  padding:16px 10px;border-radius:var(--radius);cursor:pointer;
-  border:1px solid var(--border);background:rgba(255,255,255,0.03);
-  transition:all 0.2s;
+.phase-row:last-child { border-bottom:none; }
+.phase-dot   { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+.phase-name  { font-size:12px; font-weight:600; color:var(--body); }
+.phase-period{ font-size:10px; color:var(--sub); margin-top:1px; }
+.phase-score { font-family:var(--mono); font-size:11px; font-weight:700; }
+
+/* RULES */
+.rule-row {
+  display:grid; grid-template-columns:24px 1fr; gap:12px; padding:12px 0;
+  border-bottom:1px solid var(--line); font-size:12px; color:var(--sub); line-height:1.55;
+  transition:color .12s;
 }
-.modal-btn:hover{transform:translateY(-2px)}
-.modal-btn-icon{font-size:22px}
-.modal-btn-label{font-size:13px;font-weight:500;color:var(--text-primary)}
-.modal-btn-desc{font-size:10px;color:var(--text-muted);text-align:center;line-height:1.4}
-.modal-btn.done-btn{border-color:rgba(52,211,153,0.28);background:rgba(52,211,153,0.05)}
-.modal-btn.done-btn:hover{background:rgba(52,211,153,0.1);border-color:rgba(52,211,153,0.45)}
-.modal-btn.undone-btn{border-color:rgba(248,113,113,0.28);background:rgba(248,113,113,0.05)}
-.modal-btn.undone-btn:hover{background:rgba(248,113,113,0.1);border-color:rgba(248,113,113,0.45)}
-.modal-cancel{margin-top:12px;width:100%;padding:10px;background:none;border:none;color:var(--text-muted);font-size:13px;cursor:pointer;border-radius:8px;transition:color 0.2s}
-.modal-cancel:hover{color:var(--text-secondary)}
+.rule-row:hover { color:var(--body); }
+.rule-row:last-child { border-bottom:none; }
+.rule-row b  { color:var(--body); font-weight:600; }
+.rule-num    { font-family:var(--mono); font-size:10px; color:var(--muted); padding-top:1px; }
 
-/* FOOTER */
-.footer{text-align:center;margin-top:48px;font-size:12px;color:var(--text-muted);animation:fadeUp 0.5s ease 0.5s both}
-.footer span{color:var(--accent)}
+/* STREAK */
+.streak-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.streak-fire   { font-family:var(--mono); font-size:18px; font-weight:700; color:var(--head); }
+.streak-hint   { font-size:10px; color:var(--sub); }
+.streak-lbl-row { display:grid; grid-template-columns:repeat(7,1fr); gap:3px; margin-bottom:4px; }
+.streak-lbl    { font-family:var(--mono); font-size:8px; color:var(--muted); text-align:center; }
+.streak-grid   { display:grid; grid-template-columns:repeat(7,1fr); gap:3px; }
+.streak-cell   {
+  aspect-ratio:1; border-radius:1px; background:var(--line); cursor:pointer;
+  transition:background .1s, transform .1s;
+}
+.streak-cell:hover { transform:scale(1.3); z-index:1; }
+.streak-cell.done  { background:var(--sage); }
+.streak-cell.today { background:var(--red); box-shadow:0 0 6px rgba(232,64,42,.4); }
 
-/* ANIMATIONS */
-@keyframes fadeDown{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+/* QUOTE */
+.quote-body {
+  font-size:13px; font-weight:500; color:var(--body); line-height:1.75;
+  font-style:italic; transition:opacity .35s, transform .35s;
+}
+.quote-body b  { font-style:normal; color:var(--amber); font-weight:700; }
+.quote-meta    { margin-top:12px; display:flex; align-items:center; justify-content:space-between; }
+.quote-idx     { font-family:var(--mono); font-size:10px; color:var(--muted); }
+.quote-next    {
+  font-family:var(--mono); font-size:10px; color:var(--sub); background:none;
+  border:1px solid var(--line2); padding:2px 8px; border-radius:2px;
+  transition:border-color .12s, color .12s;
+}
+.quote-next:hover { border-color:var(--sub); color:var(--body); }
 
-@media(max-width:600px){
-  .stats{grid-template-columns:repeat(2,1fr)}
-  .exam-card{flex-wrap:wrap}
-  .exam-action{width:100%;justify-content:flex-end;margin-top:6px}
-  .modal-btns{grid-template-columns:1fr}
+/* RESPONSIVE */
+@media (max-width:800px) {
+  .metrics { grid-template-columns:repeat(2,1fr); }
+  .layout  { grid-template-columns:1fr; }
+  .main    { border-right:none; border-bottom:1px solid var(--line); }
+  .hero    { grid-template-columns:1fr; }
+  .hero-stats { align-items:flex-start; flex-direction:row; flex-wrap:wrap; gap:24px; }
 }
 </style>
 </head>
 <body>
-<div class="wrapper">
 
-<!-- TOAST -->
-<div class="toast" id="toast">
-  <button class="toast-close" onclick="closeToast()">×</button>
-  <div class="toast-title" id="toastTitle"></div>
-  <div class="toast-body" id="toastBody"></div>
+<div class="topbar">
+  <span class="topbar-logo">HOAN</span>
+  <span class="topbar-sep">/</span>
+  <span class="topbar-path">bach-khoa-2026 / schedule</span>
+  <div class="topbar-right">
+    <span class="topbar-cd">Còn <span id="cdNum">—</span> ngày</span>
+    <div class="live"></div>
+  </div>
 </div>
 
-<!-- HEADER -->
-<header class="header">
-  <div class="header-eyebrow">Tài liệu học tập</div>
-  <h1>Tổng Hợp Đề<br/>Tiếng Anh</h1>
-  <p class="header-sub">Ôn thi cấp 3 — Bộ sưu tập đề thi chọn lọc</p>
-  <div class="header-meta">
-    <div class="meta-chip">
-      <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M5 1v4M11 1v4M1 7h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-      06/04/2026 — 22/05/2026
+<div class="hero">
+  <div>
+    <div class="hero-tag">Lộ trình cá nhân · A01 · Toán – Lý – Anh</div>
+    <div class="hero-name">HOAN<em>.</em></div>
+    <div class="hero-desc">Mục tiêu <strong>Đại học Bách Khoa Hà Nội</strong> · Khối A01 · Tổng điểm <strong>25+</strong></div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-val" id="cdStat">—</div>
+      <div class="stat-lbl">Ngày còn lại</div>
     </div>
-    <div class="meta-chip">
-      <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1Z" stroke="currentColor" stroke-width="1.5"/><path d="M8 4v4l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-      Liên tục cập nhật
+    <div class="stat-item">
+      <div class="stat-val">7.0</div>
+      <div class="stat-lbl">Mục tiêu Anh</div>
     </div>
   </div>
-</header>
-
-<!-- STREAK -->
-<div class="streak-bar">
-  <div class="streak-flame">🔥</div>
-  <div class="streak-info">
-    <div class="streak-title">Chuỗi ôn tập của bạn</div>
-    <div class="streak-sub" id="streakSub">Đang tính...</div>
-    <div class="streak-dots" id="streakDots"></div>
-  </div>
-  <div class="streak-num" id="streakNum">0</div>
 </div>
 
-<!-- MOTIVATION -->
-<div class="motivation-box">
-  <div class="motiv-icon" id="motivIcon">💪</div>
-  <div class="motiv-content">
-    <div class="motiv-text" id="motivText">Đang tải...</div>
-    <div class="motiv-sub" id="motivSub"></div>
+<div class="metrics">
+  <div class="metric">
+    <div class="metric-label">Tiếng Anh</div>
+    <div class="metric-bar"><div class="metric-fill fill-red" data-w="12"></div></div>
+    <div class="metric-val">Giai đoạn 1 / 3</div>
   </div>
-</div>
-
-<!-- STATS -->
-<div class="stats">
-  <div class="stat-box">
-    <div class="stat-num">47</div>
-    <div class="stat-label">Tổng đề</div>
+  <div class="metric">
+    <div class="metric-label">Từ vựng</div>
+    <div class="metric-bar"><div class="metric-fill fill-amber" data-w="8"></div></div>
+    <div class="metric-val">~80 / 1500 từ</div>
   </div>
-  <div class="stat-box stat-done">
-    <div class="stat-num" id="statDone">0</div>
-    <div class="stat-label">Đã hoàn thành</div>
+  <div class="metric">
+    <div class="metric-label">Ngữ pháp</div>
+    <div class="metric-bar"><div class="metric-fill fill-cyan" data-w="15"></div></div>
+    <div class="metric-val">Các thì cơ bản</div>
   </div>
-  <div class="stat-box stat-streak">
-    <div class="stat-num" id="statStreak">0</div>
-    <div class="stat-label">Chuỗi ngày</div>
-  </div>
-  <div class="stat-box stat-days">
-    <div class="stat-num" id="statDays">—</div>
-    <div class="stat-label">Ngày còn lại</div>
+  <div class="metric">
+    <div class="metric-label">Mục tiêu điểm</div>
+    <div class="metric-bar"><div class="metric-fill fill-sage" data-w="70"></div></div>
+    <div class="metric-val">7.0 / 10.0</div>
   </div>
 </div>
 
-<!-- LIST -->
-<div class="section-head">
-  <h2>Danh sách đề thi</h2>
-  <div class="section-line"></div>
-</div>
-<div class="exam-list" id="examList"></div>
-
-<div class="footer">Đừng ngừng bước , cố lên <span>Trang Tôm Xinh Gái</span> &middot; Cập nhật các đề toàn quốc 06/04/2026</div>
-</div>
-
-<!-- MODAL -->
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal">
-    <div class="modal-header">
-      <div class="modal-icon">📋</div>
-      <div class="modal-title" id="modalTitle">Đề Tiếng Anh Số 1</div>
-      <div class="modal-sub">Bạn đã hoàn thành đề này chưa?<br/>Chọn trạng thái để cập nhật tiến độ.</div>
+<div class="layout">
+<div class="main">
+  <div class="panel-header">
+    <span class="panel-title">Thời khóa biểu</span>
+    <div class="day-tabs">
+      <button class="day-tab active" onclick="showDay('t2',this)">T2</button>
+      <button class="day-tab" onclick="showDay('t3',this)">T3</button>
+      <button class="day-tab" onclick="showDay('t4',this)">T4</button>
+      <button class="day-tab" onclick="showDay('t5',this)">T5</button>
+      <button class="day-tab" onclick="showDay('t6',this)">T6</button>
+      <button class="day-tab wknd" onclick="showDay('t7',this)">T7</button>
+      <button class="day-tab wknd" onclick="showDay('cn',this)">CN</button>
     </div>
-    <div class="modal-btns">
-      <div class="modal-btn done-btn" onclick="setStatus('done')">
-        <div class="modal-btn-icon">✅</div>
-        <div class="modal-btn-label">Đã làm xong</div>
-        <div class="modal-btn-desc">Đánh dấu hoàn thành, nút tải chuyển thành "Hoàn thành"</div>
-      </div>
-      <div class="modal-btn undone-btn" onclick="setStatus('undone')">
-        <div class="modal-btn-icon">📖</div>
-        <div class="modal-btn-label">Chưa làm xong</div>
-        <div class="modal-btn-desc">Giữ nguyên nút tải xuống, nhắc bạn làm tiếp</div>
-      </div>
-    </div>
-    <button class="modal-cancel" onclick="closeModal()">Huỷ bỏ</button>
   </div>
+
+  <!-- T2 -->
+  <div class="sch-panel active" id="day-t2"><table class="block-table">
+    <tr class="block-row eng">
+      <td class="col-time">05:00–05:30</td><td class="col-type"><span class="type-pill tp-eng">ENG</span></td>
+      <td class="col-content">
+        <div class="block-title">Từ vựng sáng sớm</div>
+        <div class="block-desc">Học <b>10 từ mới</b> · đọc to 3 lần · ghi 1 câu ví dụ · ghi sổ tay</div>
+        <div class="block-steps"><div class="block-step">Mở Anki → học thẻ mới hôm nay</div><div class="block-step">Đọc to từng từ + nghĩa + câu ví dụ</div></div>
+      </td><td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+    <tr class="block-row sch">
+      <td class="col-time">06:45–11:00</td><td class="col-type"><span class="type-pill tp-sch">SCH</span></td>
+      <td class="col-content"><div class="block-title">Trên lớp — Sáng</div><div class="block-desc">Giờ ra chơi: lấy sổ từ vựng ôn lại 10 từ vừa học</div></td><td class="col-action"></td>
+    </tr>
+    <tr class="block-row rest">
+      <td class="col-time">11:00–11:45</td><td class="col-type"><span class="type-pill tp-rest">—</span></td>
+      <td class="col-content"><div class="block-title">Ăn trưa</div><div class="block-desc">Không học ngay sau ăn. Não nghỉ tối thiểu 20 phút.</div></td><td class="col-action"></td>
+    </tr>
+    <tr class="block-row eng">
+      <td class="col-time">11:45–13:00</td><td class="col-type"><span class="type-pill tp-eng">ENG</span></td>
+      <td class="col-content">
+        <div class="block-title">Ngữ pháp — 75 phút</div>
+        <div class="block-desc">Lý thuyết 20' → Bài tập 40' → Chấm + ghi lỗi sai 15'</div>
+        <div class="block-steps"><div class="block-step">T1–4: Hiện tại đơn / tiếp diễn</div><div class="block-step">T5–8: Quá khứ đơn / tiếp diễn</div><div class="block-step">T9–12: Tương lai · Hiện tại hoàn thành</div></div>
+      </td><td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+    <tr class="block-row rest">
+      <td class="col-time">13:00–13:45</td><td class="col-type"><span class="type-pill tp-rest">—</span></td>
+      <td class="col-content"><div class="block-title">Ngủ trưa — bắt buộc</div><div class="block-desc">Đặt báo <b>30 phút</b>. Không ngủ quá 45'. Não nạp lại cho buổi tối.</div></td><td class="col-action"></td>
+    </tr>
+    <tr class="block-row sch">
+      <td class="col-time">13:45–17:00</td><td class="col-type"><span class="type-pill tp-sch">SCH</span></td>
+      <td class="col-content"><div class="block-title">Trên lớp — Chiều</div><div class="block-desc">Chú ý đặc biệt tiết Tiếng Anh</div></td><td class="col-action"></td>
+    </tr>
+    <tr class="block-row math">
+      <td class="col-time">17:30–19:00</td><td class="col-type"><span class="type-pill tp-math">MATH</span></td>
+      <td class="col-content"><div class="block-title">Toán / Lý — Bài về nhà</div><div class="block-desc">Ôn bài 30' → Bài tập 60'</div></td>
+      <td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+    <tr class="block-row eng">
+      <td class="col-time">19:30–21:00</td><td class="col-type"><span class="type-pill tp-eng">ENG</span></td>
+      <td class="col-content">
+        <div class="block-title">Nghe + Ôn từ vựng — 90 phút</div>
+        <div class="block-desc">BBC 6 Min English 30' → Anki ôn cũ 30' → Học từ mới 30'</div>
+        <div class="block-steps"><div class="block-step">Lần 1: nghe không xem script</div><div class="block-step">Lần 2: đọc script, đọc theo từng câu</div></div>
+      </td><td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+    <tr class="block-row math">
+      <td class="col-time">21:00–22:30</td><td class="col-type"><span class="type-pill tp-math">MATH</span></td>
+      <td class="col-content"><div class="block-title">Toán / Lý — Nâng cao</div><div class="block-desc">Đặt đồng hồ 90'. Không học quá giờ.</div></td>
+      <td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+  </table></div>
+
+  <!-- T3 -->
+  <div class="sch-panel" id="day-t3"><table class="block-table">
+    <tr class="block-row eng">
+      <td class="col-time">05:00–05:30</td><td class="col-type"><span class="type-pill tp-eng">ENG</span></td>
+      <td class="col-content"><div class="block-title">Ôn ngữ pháp hôm qua</div><div class="block-desc">Làm lại 5–10 câu sai · Đọc to 3 câu ví dụ mỗi cấu trúc</div></td>
+      <td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+    <tr class="block-row sch">
+      <td class="col-time">06:45–11:00</td><td class="col-type"><span class="type-pill tp-sch">SCH</span></td>
+      <td class="col-content"><div class="block-title">Trên lớp — Sáng</div><div class="block-desc">Có tiết Anh → ghi tất cả từ mới + cấu trúc thầy cô dạy</div></td><td class="col-action"></td>
+    </tr>
+    <tr class="block-row eng">
+      <td class="col-time">11:45–13:15</td><td class="col-type"><span class="type-pill tp-eng">ENG</span></td>
+      <td class="col-content">
+        <div class="block-title">Đọc hiểu — 90 phút</div>
+        <div class="block-desc">Đoạn văn 150–200 từ · Tra từ → dịch → ghi Anki từ mới</div>
+        <div class="block-steps"><div class="block-step">GĐ1 (Hè): đọc + dịch từng câu</div><div class="block-step">GĐ2 (HK1): 1 đoạn THPT 4 câu, phân tích từng đáp án</div></div>
+      </td><td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+    <tr class="block-row rest">
+      <td class="col-time">13:15–13:45</td><td class="col-type"><span class="type-pill tp-rest">—</span></td>
+      <td class="col-content"><div class="block-title">Ngủ trưa 30 phút</div></td><td class="col-action"></td>
+    </tr>
+    <tr class="block-row sch">
+      <td class="col-time">13:45–17:00</td><td class="col-type"><span class="type-pill tp-sch">SCH</span></td>
+      <td class="col-content"><div class="block-title">Trên lớp — Chiều</div></td><td class="col-action"></td>
+    </tr>
+    <tr class="block-row math">
+      <td class="col-time">17:30–19:00</td><td class="col-type"><span class="type-pill tp-math">MATH</span></td>
+      <td class="col-content"><div class="block-title">Toán / Lý — Bài về nhà</div><div class="block-desc">Xong bài về nhà trước, bài nâng cao sau</div></td>
+      <td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+    <tr class="block-row eng">
+      <td class="col-time">19:30–21:00</td><td class="col-type"><span class="type-pill tp-eng">ENG</span></td>
+      <td class="col-content">
+        <div class="block-title">Từ vựng theo chủ đề — 90 phút</div>
+        <div class="block-desc"><b>15 từ/buổi</b> · Education → Environment → Tech → Health → Society</div>
+        <div class="block-steps"><div class="block-step">Mỗi từ: nghĩa + phát âm + ví dụ + collocations</div><div class="block-step">20 phút cuối: ôn Anki</div></div>
+      </td><td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+    <tr class="block-row math">
+      <td class="col-time">21:00–22:30</td><td class="col-type"><span class="type-pill tp-math">MATH</span></td>
+      <td class="col-content"><div class="block-title">Toán / Lý — Chuyên đề</div></td>
+      <td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+  </table></div>
+
+  <!-- T4 -->
+  <div class="sch-panel" id="day-t4"><table class="block-table">
+    <tr class="block-row eng">
+      <td class="col-time">05:00–05:30</td><td class="col-type"><span class="type-pill tp-eng">ENG</span></td>
+      <td class="col-content"><div class="block-title">Phát âm IPA</div><div class="block-desc">4–5 âm/buổi · Rachel's English · Ghi âm lại và so sánh</div></td>
+      <td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+    <tr class="block-row sch">
+      <td class="col-time">06:45–11:00</td><td class="col-type"><span class="type-pill tp-sch">SCH</span></td>
+      <td class="col-content"><div class="block-title">Trên lớp — Sáng</div></td><td class="col-action"></td>
+    </tr>
+    <tr class="block-row eng">
+      <td class="col-time">11:45–13:15</td><td class="col-type"><span class="type-pill tp-eng">ENG</span></td>
+      <td class="col-content">
+        <div class="block-title">Ngữ pháp chuyên sâu — 90 phút</div>
+        <div class="block-desc">15–20 câu bài tập. Luân phiên 4 tuần.</div>
+        <div class="block-steps"><div class="block-step">Tuần 1: Câu điều kiện loại 1, 2, 3</div><div class="block-step">Tuần 2: Câu bị động</div><div class="block-step">Tuần 3: Mệnh đề quan hệ</div><div class="block-step">Tuần 4: Câu gián tiếp</div></div>
+      </td><td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+    <tr class="block-row rest">
+      <td class="col-time">13:15–13:45</td><td class="col-type"><span class="type-pill tp-rest">—</span></td>
+      <td class="col-content"><div class="block-title">Ngủ trưa 30 phút</div></td><td class="col-action"></td>
+    </tr>
+    <tr class="block-row sch">
+      <td class="col-time">13:45–17:00</td><td class="col-type"><span class="type-pill tp-sch">SCH</span></td>
+      <td class="col-content"><div class="block-title">Trên lớp — Chiều</div></td><td class="col-action"></td>
+    </tr>
+    <tr class="block-row math">
+      <td class="col-time">17:30–19:00</td><td class="col-type"><span class="type-pill tp-math">MATH</span></td>
+      <td class="col-content"><div class="block-title">Toán / Lý — Bài tập</div></td>
+      <td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+    <tr class="block-row eng">
+      <td class="col-time">19:30–20:30</td><td class="col-type"><span class="type-pill tp-eng">ENG</span></td>
+      <td class="col-content"><div class="block-title">TED-Ed / EnglishClass101 — 60 phút</div><div class="block-desc">Ghi 3–5 từ/cụm từ mới · Quen tai tiếng Anh tự nhiên</div></td>
+      <td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+    <tr class="block-row math">
+      <td class="col-time">20:30–22:30</td><td class="col-type"><span class="type-pill tp-math">MATH</span></td>
+      <td class="col-content"><div class="block-title">Toán / Lý — Ôn + Đề</div></td>
+      <td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+  </table></div>
+
+  <!-- T5 -->
+  <div class="sch-panel" id="day-t5"><table class="block-table">
+    <tr class="block-row eng">
+      <td class="col-time">05:00–05:30</td><td class="col-type"><span class="type-pill tp-eng">ENG</span></td>
+      <td class="col-content"><div class="block-title">Ôn Anki toàn bộ tuần</div><div class="block-desc">Tất cả thẻ đến hạn · Mục tiêu <b>50+ thẻ</b> trong 30 phút</div></td>
+      <td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+    <tr class="block-row sch">
+      <td class="col-time">06:45–11:00</td><td class="col-type"><span class="type-pill tp-sch">SCH</span></td>
+      <td class="col-content"><div class="block-title">Trên lớp — Sáng</div></td><td class="col-action"></td>
+    </tr>
+    <tr class="block-row eng">
+      <td class="col-time">11:45–13:00</td><td class="col-type"><span class="type-pill tp-eng">ENG</span></td>
+      <td class="col-content">
+        <div class="block-title">Tìm lỗi sai + Điền từ — 75 phút</div>
+        <div class="block-desc">3 dạng bài chiếm nhiều điểm nhất trong đề THPT</div>
+        <div class="block-steps"><div class="block-step">Error identification — 4 câu/đề</div><div class="block-step">Gap-fill — từ vựng + ngữ pháp</div><div class="block-step">Synonyms / Antonyms</div></div>
+      </td><td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+    <tr class="block-row rest">
+      <td class="col-time">13:00–13:45</td><td class="col-type"><span class="type-pill tp-rest">—</span></td>
+      <td class="col-content"><div class="block-title">Ngủ trưa 30–40 phút</div></td><td class="col-action"></td>
+    </tr>
+    <tr class="block-row sch">
+      <td class="col-time">13:45–17:00</td><td class="col-type"><span class="type-pill tp-sch">SCH</span></td>
+      <td class="col-content"><div class="block-title">Trên lớp — Chiều</div></td><td class="col-action"></td>
+    </tr>
+    <tr class="block-row math">
+      <td class="col-time">17:30–19:00</td><td class="col-type"><span class="type-pill tp-math">MATH</span></td>
+      <td class="col-content"><div class="block-title">Toán / Lý — Bài về nhà</div></td>
+      <td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+    <tr class="block-row eng">
+      <td class="col-time">19:30–21:00</td><td class="col-type"><span class="type-pill tp-eng">ENG</span></td>
+      <td class="col-content">
+        <div class="block-title">Viết câu — 90 phút</div>
+        <div class="block-desc">5–7 câu mô tả hôm nay bằng tiếng Anh · Dùng từ vựng đã học tuần này</div>
+        <div class="block-steps"><div class="block-step">Không cần hoàn hảo — cứ viết, sai rồi sửa</div><div class="block-step">30 phút cuối: ôn Anki buổi tối</div></div>
+      </td><td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+    <tr class="block-row math">
+      <td class="col-time">21:00–22:30</td><td class="col-type"><span class="type-pill tp-math">MATH</span></td>
+      <td class="col-content"><div class="block-title">Toán / Lý — Bài khó</div></td>
+      <td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+  </table></div>
+
+  <!-- T6 -->
+  <div class="sch-panel" id="day-t6"><table class="block-table">
+    <tr class="block-row eng">
+      <td class="col-time">05:00–05:30</td><td class="col-type"><span class="type-pill tp-eng">ENG</span></td>
+      <td class="col-content"><div class="block-title">Nghe BBC / VOA sáng sớm</div><div class="block-desc">Lần 1 không xem script → Lần 2 đọc theo · Ghi 3 từ mới vào Anki</div></td>
+      <td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+    <tr class="block-row sch">
+      <td class="col-time">06:45–11:00</td><td class="col-type"><span class="type-pill tp-sch">SCH</span></td>
+      <td class="col-content"><div class="block-title">Trên lớp — Sáng</div><div class="block-desc">Chuẩn bị tâm thế cho T7 + CN học nặng hơn</div></td><td class="col-action"></td>
+    </tr>
+    <tr class="block-row eng">
+      <td class="col-time">11:45–13:15</td><td class="col-type"><span class="type-pill tp-eng">ENG</span></td>
+      <td class="col-content"><div class="block-title">Tổng ôn cả tuần — 90 phút</div><div class="block-desc">Bài tập sai 25' → Anki 25' → Đọc hiểu mini 25' → Sổ lỗi sai 15'</div></td>
+      <td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+    <tr class="block-row rest">
+      <td class="col-time">13:15–13:45</td><td class="col-type"><span class="type-pill tp-rest">—</span></td>
+      <td class="col-content"><div class="block-title">Ngủ trưa 30 phút</div></td><td class="col-action"></td>
+    </tr>
+    <tr class="block-row sch">
+      <td class="col-time">13:45–17:00</td><td class="col-type"><span class="type-pill tp-sch">SCH</span></td>
+      <td class="col-content"><div class="block-title">Trên lớp — Chiều</div></td><td class="col-action"></td>
+    </tr>
+    <tr class="block-row math">
+      <td class="col-time">17:30–19:00</td><td class="col-type"><span class="type-pill tp-math">MATH</span></td>
+      <td class="col-content"><div class="block-title">Toán / Lý — Ôn nhẹ</div></td>
+      <td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+    <tr class="block-row free">
+      <td class="col-time">19:30–21:00</td><td class="col-type"><span class="type-pill tp-free">FREE</span></td>
+      <td class="col-content"><div class="block-title">Thư giãn — xứng đáng rồi</div><div class="block-desc">Game / phim / bạn bè. Giới hạn 1.5 tiếng, dừng đúng giờ.</div></td><td class="col-action"></td>
+    </tr>
+    <tr class="block-row eng">
+      <td class="col-time">21:00–22:00</td><td class="col-type"><span class="type-pill tp-eng">ENG</span></td>
+      <td class="col-content"><div class="block-title">Ôn Anki nhẹ — 60 phút</div><div class="block-desc">Anki 30' + xem lại sổ từ vựng tuần 30'. Nhẹ nhàng.</div></td>
+      <td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+  </table></div>
+
+  <!-- T7 -->
+  <div class="sch-panel" id="day-t7"><table class="block-table">
+    <tr class="block-row test">
+      <td class="col-time">07:00–09:30</td><td class="col-type"><span class="type-pill tp-test">TEST</span></td>
+      <td class="col-content">
+        <div class="block-title">Luyện đề THPT hoàn chỉnh — 150 phút</div>
+        <div class="block-desc"><b>60 phút</b> làm 50 câu bấm giờ · <b>90 phút</b> chữa chi tiết từng câu sai</div>
+        <div class="block-steps"><div class="block-step">Phân tích: sai vì từ vựng hay ngữ pháp?</div><div class="block-step">Nguồn: thithpt.com / thi247.com (miễn phí)</div></div>
+      </td><td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+    <tr class="block-row rest">
+      <td class="col-time">09:30–10:00</td><td class="col-type"><span class="type-pill tp-rest">—</span></td>
+      <td class="col-content"><div class="block-title">Nghỉ giải lao — không điện thoại</div></td><td class="col-action"></td>
+    </tr>
+    <tr class="block-row math">
+      <td class="col-time">10:00–12:00</td><td class="col-type"><span class="type-pill tp-test">TEST</span></td>
+      <td class="col-content"><div class="block-title">Toán — Luyện đề 120 phút</div><div class="block-desc">Đề chuyên đề hoặc đề thi thử đầy đủ. T7 là ngày Toán nặng nhất.</div></td>
+      <td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+    <tr class="block-row rest">
+      <td class="col-time">12:00–13:30</td><td class="col-type"><span class="type-pill tp-rest">—</span></td>
+      <td class="col-content"><div class="block-title">Ăn trưa + Ngủ trưa 30–45 phút</div></td><td class="col-action"></td>
+    </tr>
+    <tr class="block-row eng">
+      <td class="col-time">13:30–15:00</td><td class="col-type"><span class="type-pill tp-eng">ENG</span></td>
+      <td class="col-content"><div class="block-title">Sơ đồ tư duy ngữ pháp — 90 phút</div><div class="block-desc">Ôn toàn bộ ngữ pháp tháng · Vẽ mind map từng thì và cấu trúc</div></td>
+      <td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+    <tr class="block-row math">
+      <td class="col-time">15:00–17:00</td><td class="col-type"><span class="type-pill tp-math">MATH</span></td>
+      <td class="col-content"><div class="block-title">Vật Lý — Chuyên đề</div></td>
+      <td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+    <tr class="block-row eng">
+      <td class="col-time">19:30–21:00</td><td class="col-type"><span class="type-pill tp-eng">ENG</span></td>
+      <td class="col-content"><div class="block-title">Ôn từ vựng + Đọc báo — 90 phút</div><div class="block-desc">Anki 45' + 1 bài BBC News / VOA Learning English 45'</div></td>
+      <td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+  </table></div>
+
+  <!-- CN -->
+  <div class="sch-panel" id="day-cn"><table class="block-table">
+    <tr class="block-row eng">
+      <td class="col-time">08:00–10:00</td><td class="col-type"><span class="type-pill tp-test">READ</span></td>
+      <td class="col-content">
+        <div class="block-title">Đọc hiểu chuyên sâu — 120 phút</div>
+        <div class="block-desc">2–3 đoạn THPT · Phân tích từng câu: vì sao đúng, vì sao sai</div>
+        <div class="block-steps"><div class="block-step">10–12 câu đọc hiểu / đề = nhiều điểm nhất</div></div>
+      </td><td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+    <tr class="block-row math">
+      <td class="col-time">10:00–12:00</td><td class="col-type"><span class="type-pill tp-math">MATH</span></td>
+      <td class="col-content"><div class="block-title">Toán / Lý — Tổng ôn tuần</div><div class="block-desc">Công thức + định lý → Ghi sổ riêng → Đánh dấu bài chưa hiểu</div></td>
+      <td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+    <tr class="block-row rest">
+      <td class="col-time">12:00–13:30</td><td class="col-type"><span class="type-pill tp-rest">—</span></td>
+      <td class="col-content"><div class="block-title">Ăn trưa + Ngủ trưa</div></td><td class="col-action"></td>
+    </tr>
+    <tr class="block-row eng">
+      <td class="col-time">13:30–15:00</td><td class="col-type"><span class="type-pill tp-eng">ENG</span></td>
+      <td class="col-content">
+        <div class="block-title">Shadowing — 90 phút</div>
+        <div class="block-desc">Nghe 1 câu → dừng → đọc to y hệt → lặp lại · TED-Ed / BBC</div>
+        <div class="block-steps"><div class="block-step">Kỹ thuật tốt nhất để phát âm chuẩn và nói tự nhiên</div></div>
+      </td><td class="col-action"><button class="check-btn" onclick="toggleDone(this)"></button></td>
+    </tr>
+    <tr class="block-row rest">
+      <td class="col-time">15:00–17:00</td><td class="col-type"><span class="type-pill tp-rest">—</span></td>
+      <td class="col-content"><div class="block-title">Lập kế hoạch tuần tới</div><div class="block-desc">Mục tiêu cụ thể: học thì gì · chủ đề từ vựng gì · bao nhiêu đề</div></td><td class="col-action"></td>
+    </tr>
+    <tr class="block-row free">
+      <td class="col-time">17:00–23:00</td><td class="col-type"><span class="type-pill tp-free">FREE</span></td>
+      <td class="col-content"><div class="block-title">Thời gian tự do hoàn toàn</div><div class="block-desc">Trước khi ngủ: mở Anki ôn nhanh <b>15 phút</b> rồi tắt.</div></td><td class="col-action"></td>
+    </tr>
+  </table></div>
+
+</div><!-- /main -->
+
+<div class="aside">
+  <div class="aside-block">
+    <div class="commit">
+      <div class="commit-text">Mỗi ngày <em>90 phút tiếng Anh.</em><br>Không bỏ buổi nào.<br>Bách Khoa 2026.</div>
+    </div>
+  </div>
+
+  <div class="aside-block">
+    <div class="aside-title">Lộ trình</div>
+    <div class="phase-row">
+      <div class="phase-dot" style="background:var(--red);box-shadow:0 0 0 3px rgba(232,64,42,.15)"></div>
+      <div class="phase-info"><div class="phase-name">Xây nền tảng</div><div class="phase-period">T6–8 · Hè 2025</div></div>
+      <div class="phase-score" style="color:var(--red)">3–4 ↗</div>
+    </div>
+    <div class="phase-row">
+      <div class="phase-dot" style="background:var(--cyan)"></div>
+      <div class="phase-info"><div class="phase-name">Luyện kỹ năng</div><div class="phase-period">T9–12 · HK1</div></div>
+      <div class="phase-score" style="color:var(--cyan)">5–6</div>
+    </div>
+    <div class="phase-row">
+      <div class="phase-dot" style="background:var(--sage)"></div>
+      <div class="phase-info"><div class="phase-name">Chinh phục đề thi</div><div class="phase-period">T1–6 · HK2</div></div>
+      <div class="phase-score" style="color:var(--sage)">7–8</div>
+    </div>
+  </div>
+
+  <div class="aside-block">
+    <div class="aside-title">Quy tắc</div>
+    <div class="rule-row"><div class="rule-num">01</div><div><b>Anki mỗi ngày</b> — không ôn là quên, không có ngoại lệ</div></div>
+    <div class="rule-row"><div class="rule-num">02</div><div><b>Sổ lỗi sai</b> — ghi lý do sai, xem lại mỗi chủ nhật</div></div>
+    <div class="rule-row"><div class="rule-num">03</div><div><b>Ngủ trưa 30'</b> — não phải nghỉ mới học được buổi tối</div></div>
+    <div class="rule-row"><div class="rule-num">04</div><div><b>Max 90' liên tục</b> — nghỉ 15' rồi tiếp</div></div>
+    <div class="rule-row"><div class="rule-num">05</div><div><b>T7 luyện đề thật</b> — bấm giờ, không xem đáp án trước</div></div>
+  </div>
+
+  <div class="aside-block">
+    <div class="aside-title">Streak tuần này</div>
+    <div class="streak-header">
+      <div class="streak-hint">Click ô để check</div>
+      <div class="streak-fire" id="streakNum">0 🔥</div>
+    </div>
+    <div class="streak-lbl-row">
+      <div class="streak-lbl">CN</div><div class="streak-lbl">T2</div><div class="streak-lbl">T3</div>
+      <div class="streak-lbl">T4</div><div class="streak-lbl">T5</div><div class="streak-lbl">T6</div><div class="streak-lbl">T7</div>
+    </div>
+    <div class="streak-grid" id="streakGrid"></div>
+  </div>
+
+  <div class="aside-block">
+    <div class="aside-title">Động lực</div>
+    <div class="quote-body" id="quoteEl">"Mỗi từ tiếng Anh Hoan học tối nay là <b>1 viên gạch</b> xây con đường đến Bách Khoa."</div>
+    <div class="quote-meta">
+      <span class="quote-idx" id="quoteIdx">01 / 08</span>
+      <button class="quote-next" onclick="nextQuote()">tiếp →</button>
+    </div>
+  </div>
+</div>
 </div>
 
 <script>
-// ══════════════════════════════════════════════════════
-//  DANH SÁCH ĐỀ — thay link-de-X.com bằng link thật
-// ══════════════════════════════════════════════════════
-var exams = [
-  { num: 1,  date:'06/04/2026', link:'https://www.mediafire.com/file/fplumpy20zr990t/trac-nghiem+(1).pdf/file' },
-  { num: 2,  date:'07/04/2026', link:'https://www.mediafire.com/file/yazxhkzqluuxk5l/de-luyen-thi-vao-10-tieng-anh-2024-2025-co-dap-an-de-2.pdf/file' },
-  { num: 3,  date:'08/04/2026', link:'https://www.mediafire.com/file/195nyg6bdm0jeom/de-thi-vao-lop-10-mon-tieng-anh-dieu-kien-nam-hoc-2016-2017-truong-thpt-chuyen-nguyen-hue-ha-noi-lan-1.pdf/file' },
-  { num: 4,  date:'09/04/2026', link:'https://www.mediafire.com/file/sdafu5invcjax46/de-cuong-on-tap-giua-ki-2-tieng-anh-9-global-success-co-dap-an_2026_03_22.docx/file' },
-  { num: 5,  date:'10/04/2026', link:'https://www.mediafire.com/file/icil6gama18t46p/De-va-dap-an-thi-vao-lop-10-tieng-anh-ho-chi-minh-2015.doc/file' },
-  { num: 6,  date:'11/04/2026', link:'https://www.mediafire.com/file/v7trteqfm76vaqh/De-va-dap-an-thi-tuyen-sinh-vao-lop-10-mon-tieng-anh-namhoc2014-2015-truong-thpt-chuyen-phan-boi-chau-nghe-an.doc/file' },
-  { num: 7,  date:'12/04/2026', link:'https://www.mediafire.com/file/2q2cdjwrooub0m4/de-thi-vao-tienganh-lop10-tinh-Hung-Yen-2015-2016-danh-cho-moi-thi-sinh.doc/file' },
-  { num: 8,  date:'13/04/2026', link:'https://www.mediafire.com/file/htpyynoq3on3wer/de-thi-vao-tienganh-lop10chuyen-tinh-Hung-Yen-2015-2016.doc/file' },
-  { num: 9,  date:'14/04/2026', link:'https://www.mediafire.com/file/hpn1a4hnr99ypm1/De-thi-vao-lop-10-tieng-anh-chuyen-tp-hochiminh2015.pdf/file' },
-  { num: 10, date:'15/04/2026', link:'https://www.mediafire.com/file/zxqd9e1l1a1nvsz/De-HSG-TA-9-De-6.docx/file' },
-  { num: 11, date:'16/04/2026', link:'https://www.mediafire.com/file/zf0zfsbrppfzoih/De-HSG-TA-9-De-1.docx/file' },
-  { num: 12, date:'17/04/2026', link:'https://www.mediafire.com/file/tckamzht8pjj75q/De-HSG-TA-9-De-2.docx/file' },
-  { num: 13, date:'18/04/2026', link:'https://www.mediafire.com/file/kxud4jh5iba69pm/bo-de-thi-thu-vao-lop-10-mon-tieng-anh-truong-thcs-dai-dong-thanh-bac-ninh-thang-1-nam-2016.doc/file' },
-  { num: 14, date:'19/04/2026', link:'https://www.mediafire.com/file/di99aq2rduuap7w/dap-an-De-thi-tieng-anh-chuyen-su-pham2015.pdf/file' },
-  { num: 15, date:'20/04/2026', link:'https://www.mediafire.com/file/3xv5xxp0qexuchf/de-luyen-thi-vao-lop-10-mon-tieng-anh-truong-thcs-huong-son-bac-giang-nam-hoc-2016-2017.doc/file' },
-  { num: 16, date:'21/04/2026', link:'https://www.mediafire.com/file/i4y97fmizh1x8qr/De-thi-chuyen-anh-su-pham-2015.doc/file' },
-  { num: 17, date:'22/04/2026', link:'https://www.mediafire.com/file/ux4ri7uy6n7cvao/de-thi-thu-tuyen-sinh-vao-lop-10-mon-tieng-anh-huyen-lang-giang-bac-giang-nam-hoc-2015-2016.doc/file' },
-  { num: 18, date:'23/04/2026', link:'https://www.mediafire.com/file/6gbpelwt6j3sxnu/de-thi-thu-tuyen-sinh-vao-lop-10-mon-tieng-anh-phong-gd-dt-tam-dao-vinh-phuc-nam-hoc-2016-2017.doc/file' },
-  { num: 19, date:'24/04/2026', link:'https://www.mediafire.com/file/gwqocyfb9cmggmn/de-thi-thu-tuyen-sinh-vao-lop-10-mon-tieng-anh-so-gd-dt-thanh-hoa-nam-hoc-2016-2017-lan-6.docx/file' },
-  { num: 20, date:'25/04/2026', link:'https://www.mediafire.com/file/d3ono71ptfn0n5p/de-thi-thu-tuyen-sinh-vao-lop-10-mon-tieng-anh-so-gd-dt-thanh-hoa-nam-hoc-2016-2017.doc/file' },
-  { num: 21, date:'26/04/2026', link:'https://www.mediafire.com/file/91zxyy061d2e8hr/de-thi-thu-vao-lop-10-mon-tieng-anh-de-xuat-nam-hoc-2016-2017-so-gd-dt-phu-tho.doc/file' },
-  { num: 22, date:'27/04/2026', link:'https://www.mediafire.com/file/mscdzkpvxcgpba8/de-thi-thu-vao-lop-10-mon-tieng-anh-nam-hoc-2015-2016-phong-gd-dt-thanh-ba-phu-tho-lan-2.doc/file' },
-  { num: 23, date:'28/04/2026', link:'https://www.mediafire.com/file/hsbt3k4g32k486f/de-thi-thu-tuyen-sinh-vao-lop-10-mon-tieng-anh-truong-thcs-ngo-sy-lien-bac-giang-nam-hoc-2016-2017.doc/file' },
-  { num: 24, date:'29/04/2026', link:'https://www.mediafire.com/file/1iyohcfmqgr9ouq/de-thi-thu-tuyen-sinh-vao-lop-10-mon-tieng-anh-truong-thcs-giao-lac-nam-dinh-nam-hoc-2015-2016.doc/file' },
-  { num: 25, date:'30/04/2026', link:'https://www.mediafire.com/file/w9c3arjlumowvh2/de-thi-thu-vao-lop-10-mon-tieng-anh-dieu-kien-thpt-chuyen-nguyen-hue-nam-2015-2016-lan-3.doc/file' },
-  { num: 26, date:'01/05/2026', link:'https://www.mediafire.com/file/6y12fvuo4r1rcad/de-thi-thu-vao-lop-10-mon-tieng-anh-chuyen-truong-thpt-ha-noi-amsterdam-nam-2015-2016.doc/file' },
-  { num: 27, date:'02/05/2026', link:'https://www.mediafire.com/file/ebax9pfdc271ycz/de-thi-thu-vao-lop-10-mon-tieng-anh-khong-chuyen-truong-thpt-ha-noi-amsterdam-nam-2015.doc/file' },
-  { num: 28, date:'03/05/2026', link:'https://www.mediafire.com/file/6p3xut933yrnmtw/de-thi-thu-vao-lop-10-mon-tieng-anh-chuyen-thpt-chuyen-nguyen-hue-nam-2015-2016-lan-3.doc/file' },
-  { num: 29, date:'04/05/2026', link:'https://www.mediafire.com/file/8cyywtcctfhv57b/de-thi-thu-vao-lop-10-mon-tieng-anh-chuyen-truong-thpt-ha-noi-amsterdam-nam-hoc-2016-2017.pdf/file' },
-  { num: 30, date:'05/05/2026', link:'https://www.mediafire.com/file/9b3u85zy15gfox8/de-thi-thu-vao-lop-10-mon-tieng-anh-dieu-kien-truong-thpt-chuyen-su-pham-lan-3.pdf/file' },
-  { num: 31, date:'06/05/2026', link:'https://www.mediafire.com/file/dchx1z5xh865fer/de-thi-thu-vao-lop-10-mon-tieng-anh-truong-thcs-tan-binh-tp-hcm.doc/file' },
-  { num: 32, date:'07/05/2026', link:'https://www.mediafire.com/file/nrmoquqjvtnvo4j/de-thi-thu-vao-lop-10-mon-tieng-anh-nam-hoc-2016-2017-phong-gd-dt-vinh-tuong-vinh-phuc-lan-2-co-dap-an.doc/file' },
-  { num: 33, date:'08/05/2026', link:'https://www.mediafire.com/file/tz2zgx8b4os0qqi/de-thi-thu-vao-lop-10-mon-tieng-anh-truong-thcs-dong-hung-thai-binh-nam-hoc-2016-2017.doc/file' },
-  { num: 34, date:'09/05/2026', link:'https://www.mediafire.com/file/u7wd3dcalc3g4ak/de-thi-thu-vao-lop-10-mon-tieng-anh-nam-hoc-2016-2017-phong-gd-dt-yen-lac-vinh-phuc-lan-1.doc/file' },
-  { num: 35, date:'10/05/2026', link:'https://www.mediafire.com/file/5lrisj8b3i4xsb7/de-thi-thu-vao-lop-10-mon-tieng-anh-phong-gd-dt-gia-loc-hai-duong-nam-hoc-2016-2017.doc/file' },
-  { num: 36, date:'11/05/2026', link:'https://www.mediafire.com/file/it4npd10t6wbv0m/de-thi-thu-vao-lop-10-mon-tieng-anh-nam-hoc-2016-2017-phong-gd-dt-yen-lac-vinh-phuc-lan-2-co-dap-an.doc/file' },
-  { num: 37, date:'12/05/2026', link:'https://www.mediafire.com/file/ptgx89dvtvxodvq/de-thi-thu-vao-lop-10-mon-tieng-anh-nam-hoc-2016-2017-truong-thcs-kim-ngoc-vinh-phuc-lan-2.doc/file' },
-  { num: 38, date:'13/05/2026', link:'https://link-de-38.comhttps://www.mediafire.com/file/ydczi09z856wtdb/de-thi-thu-vao-lop-10-mon-tieng-anh-truong-thcs-dai-dong-thanh-bac-ninh-thang-4-nam-2016.doc/file' },
-  { num: 39, date:'14/05/2026', link:'https://www.mediafire.com/file/rfxxzciyqxieyh8/de-thi-thu-vao-lop-10-mon-tieng-anh-nam-hoc-2016-2017-phong-gd-dt-tam-dao-vinh-phuc-lan-2.doc/file' },
-  { num: 40, date:'15/05/2026', link:'https://www.mediafire.com/file/8gm61yui10a0eee/de-thi-tieng-anh-vao-lop-10-thpt-chuyen-ngoai-ngu-nam-2013-co-dap-an.doc/file' },
-  { num: 41, date:'16/05/2026', link:'https://link-de-41.comhttps://www.mediafire.com/file/j3vm86dltd3rmc2/De-thi-tieng-anh-vao-lop-10-tinh-Vinh-Long-2015-2016.doc/file' },
-  { num: 42, date:'17/05/2026', link:'https://www.mediafire.com/file/z7xozq723n8z2qn/de-thi-tuyen-sinh-vao-lop-10-mon-tieng-anh-chuyen-nam-hoc-2014-2015-so-gd-dt-nam-dinh.doc/file' },
-  { num: 43, date:'18/05/2026', link:'https://www.mediafire.com/file/wt5xt7dfthgbxej/de-thi-tuyen-sinh-vao-lop-10-mon-tieng-anh-chuyen-nam-hoc-2009-2010-so-gd-dt-bac-ninh.doc/file' },
-  { num: 44, date:'19/05/2026', link:'https://www.mediafire.com/file/47869tt68rau1t4/de-thi-tuyen-sinh-vao-lop-10-mon-tieng-anh-chung-nam-2015-truong-thpt-chuyen-le-hong-phong-nam-dinh.doc/file' },
-  { num: 45, date:'20/05/2026', link:'https://www.mediafire.com/file/pz49fhwl948ixp2/de-thi-tuyen-sinh-vao-lop-10-mon-tieng-anh-chuyen-nam-hoc-2009-2010-so-gd-dt-vung-tau.doc/file' },
-  { num: 46, date:'21/05/2026', link:'https://www.mediafire.com/file/01n8osff3aqb6ii/de-thi-tuyen-sinh-vao-lop-10-mon-tieng-anh-chuyen-nam-hoc-2009-2010-so-gd-dt-phu-yen.doc/filehtts://link-de-46.com' },
-  { num: 47, date:'22/05/2026', link:'https://www.mediafire.com/file/8dl5i335qr5c2zb/de-thi-tuyen-sinh-vao-lop-10-mon-tieng-anh-chuyen-nam-hoc-2008-2009-so-gd-dt-da-nang.doc/file' },
-];
-
-// ── SVG ICONS ──
-var IC_DL='<svg viewBox="0 0 16 16" fill="none"><path d="M8 2v8M5 7l3 3 3-3" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12h12" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>';
-var IC_DONE='<svg viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="#34d399" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-var IC_CAL='<svg width="11" height="11" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M5 1v4M11 1v4M1 7h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
-var IC_CONT='<svg viewBox="0 0 16 16" fill="none"><path d="M5 8h6M9 5l3 3-3 3" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-
-// ── LOCAL STORAGE ──
-function load(k,def){try{var v=localStorage.getItem(k);return v!==null?JSON.parse(v):def}catch(e){return def}}
-function save(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
-
-var doneSet=load('eng_done',{});
-var streakData=load('eng_streak',{});
-
-// ── HELPERS ──
-function todayVN(){
-  var d=new Date(Date.now()+7*3600*1000);
-  return d.toISOString().slice(0,10);
-}
-
-// ── STREAK CALC ──
-function calcStreak(){
-  var keys=Object.keys(streakData).filter(function(k){return streakData[k]}).sort();
-  if(!keys.length) return 0;
-  var today=todayVN();
-  var yesterday=new Date(Date.now()+7*3600*1000-86400000).toISOString().slice(0,10);
-  var last=keys[keys.length-1];
-  if(last!==today&&last!==yesterday) return 0;
-  var streak=1;
-  for(var i=keys.length-1;i>0;i--){
-    if((new Date(keys[i])-new Date(keys[i-1]))===86400000) streak++;
-    else break;
-  }
-  return streak;
-}
-
-// ── MOTIVATIONS ──
-var motivDay=[
-  {icon:'🔥',text:'Mỗi đề hôm nay là một điểm cộng ngày mai!',sub:'Tải ngay đề của ngày hôm nay.'},
-  {icon:'💪',text:'Chỉ cần 1 đề mỗi ngày, thi là tự tin!',sub:'Kiên trì là chìa khoá duy nhất.'},
-  {icon:'🎯',text:'Bạn đang đi đúng hướng rồi!',sub:'Giữ vững nhịp ôn tập, thành công gần lắm.'},
-  {icon:'⚡',text:'Không có đường tắt — nhưng có đề thi sẵn rồi!',sub:'Tải về, luyện thôi, đừng do dự.'},
-  {icon:'🌟',text:'Mỗi đề làm xong là thêm một lần tự tin!',sub:'Bạn giỏi hơn hôm qua rồi đó.'},
-  {icon:'📚',text:'Cấp 3 không khó, chỉ cần đủ đề luyện!',sub:'Hãy bắt đầu với đề hôm nay.'},
-  {icon:'🚀',text:'Ngày mai bạn sẽ cảm ơn bản thân hôm nay!',sub:'Ôn bài đi, tương lai đang chờ.'},
-];
-var motivEvening=[
-  {icon:'🌙',text:'Tối rồi — đừng để ngày hôm nay trôi qua trống rỗng!',sub:'Làm 1 đề trước khi ngủ, ngày mai nhẹ nhàng hơn nhiều.'},
-  {icon:'✨',text:'Buổi tối là giờ vàng để não ghi nhớ tốt nhất!',sub:'Ôn lại đề hôm nay, kiến thức sẽ in sâu hơn.'},
-  {icon:'🌃',text:'Người giỏi ôn bài lúc người khác đang xem phim!',sub:'Bạn đang đầu tư cho tương lai đó.'},
-  {icon:'💡',text:'Chỉ 30 phút tối nay — đổi lấy sự tự tin ngày thi!',sub:'Mở đề ra, bắt đầu thôi nào.'},
-];
-
-var hVN=new Date(Date.now()+7*3600*1000).getUTCHours();
-var motivList=(hVN>=19&&hVN<=23)?motivEvening:motivDay;
-var mi=Math.floor(Math.random()*motivList.length);
-
-function applyMotiv(m){
-  document.getElementById('motivIcon').textContent=m.icon;
-  document.getElementById('motivText').textContent=m.text;
-  document.getElementById('motivSub').textContent=m.sub;
-}
-applyMotiv(motivList[mi]);
-setInterval(function(){
-  mi=(mi+1)%motivList.length;
-  var t=document.getElementById('motivText'),s=document.getElementById('motivSub');
-  t.style.opacity='0';s.style.opacity='0';
-  setTimeout(function(){applyMotiv(motivList[mi]);t.style.opacity='1';s.style.opacity='1'},350);
-},7000);
-
-// ── EVENING TOAST ──
-var eveningToasts=[
-  {title:'🌙 Nhắc nhở buổi tối',body:'Đã đến giờ ôn bài! Làm 1 đề trước khi ngủ nhé — não ghi nhớ rất tốt vào buổi tối.'},
-  {title:'✨ Giờ vàng ôn tập',body:'Buổi tối là lúc tốt nhất để ôn luyện. Đừng bỏ lỡ hôm nay!'},
-  {title:'🚀 Kỳ thi đang đến gần!',body:'Mỗi đề tối nay là một bước tiến vững chắc. Bắt đầu ngay đi!'},
-  {title:'💪 Duy trì chuỗi ôn tập!',body:'Hôm nay chưa làm đề? Làm ngay để không phá vỡ chuỗi streak nhé!'},
-];
 (function(){
-  var now=new Date(Date.now()+7*3600*1000);
-  var h=now.getUTCHours(),todayK=todayVN();
-  var shownKey='eng_toast_'+todayK;
-  if(h>=19&&h<=23&&!load(shownKey,false)){
-    save(shownKey,true);
-    setTimeout(function(){
-      var msg=eveningToasts[Math.floor(Math.random()*eveningToasts.length)];
-      showToast(msg.title,msg.body,8000);
-    },1800);
-  }
+  const diff = Math.ceil((new Date('2026-06-26') - new Date()) / 86400000);
+  document.getElementById('cdNum').textContent = diff;
+  document.getElementById('cdStat').textContent = diff;
 })();
 
-// ── TOAST ──
-var toastTimer;
-function showToast(title,body,dur){
-  document.getElementById('toastTitle').textContent=title;
-  document.getElementById('toastBody').textContent=body;
-  var t=document.getElementById('toast');
-  t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer=setTimeout(function(){t.classList.remove('show')},dur||5000);
-}
-function closeToast(){clearTimeout(toastTimer);document.getElementById('toast').classList.remove('show')}
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.querySelectorAll('.metric-fill[data-w]').forEach(el => {
+      el.style.width = el.dataset.w + '%';
+    });
+  }, 300);
+});
 
-// ── MODAL ──
-var modalIdx=-1;
-function openModal(idx){
-  modalIdx=idx;
-  var e=exams[idx];
-  document.getElementById('modalTitle').textContent='Đề Tiếng Anh Số '+e.num+' — '+e.date;
-  document.getElementById('modalOverlay').classList.add('open');
+function showDay(id, btn) {
+  document.querySelectorAll('.sch-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('day-' + id).classList.add('active');
+  btn.classList.add('active');
 }
-function closeModal(){document.getElementById('modalOverlay').classList.remove('open');modalIdx=-1}
-document.getElementById('modalOverlay').addEventListener('click',function(ev){if(ev.target===this)closeModal()});
 
-function setStatus(status){
-  if(modalIdx<0) return;
-  var e=exams[modalIdx],idx=modalIdx;
-  var key=String(e.num);
-  closeModal();
-  if(status==='done'){
-    doneSet[key]=true;save('eng_done',doneSet);
-    streakData[todayVN()]=true;save('eng_streak',streakData);
-    refreshCard(idx);updateStats();renderStreak();
-    showToast('✅ Hoàn thành Đề '+e.num+'!','Tuyệt vời! Chuỗi ôn tập của em đang tăng lên. Tiếp tục phát huy!');
-  } else {
-    doneSet[key]=false;save('eng_done',doneSet);
-    refreshCard(idx);updateStats();
-    showToast('📖 Đề '+e.num+' chưa xong','Không sao! Tải lại và làm tiếp nhé. Đừng bỏ cuộc — em làm được!');
+function toggleDone(btn) {
+  btn.closest('tr').classList.toggle('done');
+}
+
+const SK = 'hoan_sk26';
+let sd = {};
+try { sd = JSON.parse(localStorage.getItem(SK) || '{}'); } catch(e) {}
+
+function buildStreak() {
+  const grid = document.getElementById('streakGrid');
+  grid.innerHTML = '';
+  const today = new Date(); today.setHours(0,0,0,0);
+  const dow = today.getDay();
+  const sun = new Date(today); sun.setDate(today.getDate() - dow);
+  let streak = 0;
+  const c = new Date(today);
+  for (let i = 0; i < 30; i++) {
+    const k = c.toISOString().split('T')[0];
+    if (sd[k]) streak++;
+    else if (i > 0) break;
+    c.setDate(c.getDate() - 1);
+  }
+  document.getElementById('streakNum').textContent = streak + ' 🔥';
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(sun); d.setDate(sun.getDate() + i); d.setHours(0,0,0,0);
+    const key = d.toISOString().split('T')[0];
+    const el = document.createElement('div');
+    el.className = 'streak-cell' + (d.getTime() === today.getTime() ? ' today' : '') + (sd[key] ? ' done' : '');
+    el.onclick = () => { sd[key] = !sd[key]; try{localStorage.setItem(SK,JSON.stringify(sd));}catch(e){} buildStreak(); };
+    grid.appendChild(el);
   }
 }
+buildStreak();
 
-// ── RENDER CARD ACTION ──
-function getActionHTML(e,idx){
-  var isDone=!!doneSet[String(e.num)];
-  if(isDone){
-    return '<button class="btn btn-done">'+IC_DONE+' Hoàn thành</button>'+
-           '<button class="btn btn-status" onclick="openModal('+idx+')">Đổi</button>';
-  }
-  return '<button class="btn btn-download" onclick="location.href=\''+e.link+'\'">'+IC_DL+' Tải xuống</button>'+
-         '<button class="btn btn-status" onclick="openModal('+idx+')">Trạng thái</button>';
+const quotes = [
+  'Mỗi từ tiếng Anh Hoan học tối nay là <b>1 viên gạch</b> xây con đường đến Bách Khoa.',
+  'Bách Khoa không chọn người thông minh nhất — họ chọn <b>người kiên trì nhất.</b>',
+  '90 phút mỗi ngày × 365 ngày. Không phải phép màu. Chỉ là <b>kỷ luật.</b>',
+  'Hôm nay mệt không muốn học — đó chính xác là lúc <b>Hoan cần học nhất.</b>',
+  'Não ghi nhớ lỗi sai <b>lâu hơn</b> kiến thức đúng. Viết sổ lỗi sai không bao giờ thừa.',
+  'Đừng dịch — hãy <b>cảm nhận theo ngữ cảnh.</b> Đó là kỹ năng của người giỏi thật.',
+  'Từ vựng học hôm nay, <b>6 tháng sau</b> xuất hiện trong đề thi. Đừng bỏ qua.',
+  'Năm 2026 nhìn lại, những buổi tối ngồi học sẽ là <b>quyết định đúng nhất.</b>',
+];
+let qi = 0;
+const qEl = document.getElementById('quoteEl');
+qEl.style.transition = 'opacity .35s, transform .35s';
+function nextQuote() {
+  qEl.style.opacity = '0'; qEl.style.transform = 'translateY(4px)';
+  setTimeout(() => {
+    qi = (qi + 1) % quotes.length;
+    qEl.innerHTML = '"' + quotes[qi] + '"';
+    document.getElementById('quoteIdx').textContent = String(qi+1).padStart(2,'0') + ' / 08';
+    qEl.style.opacity = '1'; qEl.style.transform = 'none';
+  }, 350);
 }
-
-function refreshCard(idx){
-  var e=exams[idx];
-  var card=document.getElementById('card-'+e.num);
-  if(!card) return;
-  var isDone=!!doneSet[String(e.num)];
-  card.className='exam-card'+(isDone?' is-done':'');
-  card.querySelector('.exam-action').innerHTML=getActionHTML(e,idx);
-  var titleEl=card.querySelector('.exam-title');
-  var old=titleEl.querySelector('.badge-done');
-  if(old) old.remove();
-  if(isDone){var sp=document.createElement('span');sp.className='badge badge-done';sp.textContent='Xong';titleEl.appendChild(sp)}
-}
-
-// ── STATS ──
-function updateStats(){
-  var done=Object.keys(doneSet).filter(function(k){return doneSet[k]}).length;
-  var streak=calcStreak();
-  document.getElementById('statDone').textContent=done;
-  document.getElementById('statStreak').textContent=streak;
-  document.getElementById('streakNum').textContent=streak;
-}
-
-// ── STREAK DOTS ──
-function renderStreak(){
-  var dots=document.getElementById('streakDots');
-  dots.innerHTML='';
-  var streak=calcStreak();
-  document.getElementById('streakSub').textContent=streak===0
-    ?'Hôm nay chưa làm đề — bắt đầu ngay nào!'
-    :(streak===1?'1 ngày liên tiếp — tiếp tục giữ chuỗi!':streak+' ngày liên tiếp — xuất sắc!');
-  var today=todayVN();
-  for(var i=6;i>=0;i--){
-    var dk=new Date(Date.now()+7*3600*1000-i*86400000).toISOString().slice(0,10);
-    var dot=document.createElement('div');
-    dot.title=dk;
-    if(dk===today) dot.className='streak-dot today';
-    else if(streakData[dk]) dot.className='streak-dot done';
-    else dot.className='streak-dot';
-    dots.appendChild(dot);
-  }
-}
-
-// ── RENDER ALL ──
-function renderCards(){
-  var list=document.getElementById('examList');
-  list.innerHTML='';
-  exams.forEach(function(e,i){
-    var isDone=!!doneSet[String(e.num)];
-    var card=document.createElement('div');
-    card.className='exam-card'+(isDone?' is-done':'');
-    card.id='card-'+e.num;
-    card.style.animationDelay=Math.min(i*0.018,0.55)+'s';
-    var badges=(i===0?'<span class="badge badge-new">Mới</span>':'')+(isDone?'<span class="badge badge-done">Xong</span>':'');
-    card.innerHTML=
-      '<div class="exam-num">'+e.num+'</div>'+
-      '<div class="exam-info">'+
-        '<div class="exam-title">Đề Tiếng Anh Số '+e.num+' '+badges+'</div>'+
-        '<div class="exam-date">'+IC_CAL+' '+e.date+'</div>'+
-      '</div>'+
-      '<div class="exam-action">'+getActionHTML(e,i)+'</div>';
-    list.appendChild(card);
-  });
-}
-
-// ── DAYS LEFT ──
-var daysLeft=Math.max(0,Math.ceil((new Date(2026,4,22)-new Date(Date.now()+7*3600*1000))/86400000));
-document.getElementById('statDays').textContent=daysLeft;
-
-// ── INIT ──
-renderCards();
-updateStats();
-renderStreak();
+setInterval(nextQuote, 8000);
 </script>
 </body>
 </html>
